@@ -4,56 +4,42 @@ import type { LoaderFunctionArgs } from "@remix-run/node";
 import {
   useLoaderData
 } from "@remix-run/react";
-import { getFeatureMovies, getMovieDetail } from "~/api";
+import { getFeatureMovies, searchMovies } from "~/api";
 import Image from "~/components/Image";
 import PaginatedItems from "~/components/Pagination";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const page = Number(new URL(request.url).searchParams.get('page')) || 1;
-  const res = await getFeatureMovies({ page });
-  return json({ data: res.status === "success" ? res.items : [], paginate: res.paginate, page });
+  const keyword = new URL(request.url).searchParams.get('keyword') || "";
+  let res;
+  if (keyword) {
+    res = await searchMovies({ keyword, page });
+  } else {
+    res = await getFeatureMovies({ page });
+  }
+  return json({
+    data: res.status === "success" ? res.items : [],
+    paginate: res.status === "success" ? res.paginate : null
+  });
 };
 
-function setSearchParamsString(
-  searchParams: URLSearchParams,
-  changes: Record<string, string | number | undefined>,
-) {
-  const newSearchParams = new URLSearchParams(searchParams)
-  for (const [key, value] of Object.entries(changes)) {
-    if (value === undefined) {
-      newSearchParams.delete(key)
-      continue
-    }
-    newSearchParams.set(key, String(value))
-  }
-  // Print string manually to avoid over-encoding the URL
-  // Browsers are ok with $ nowadays
-  // optional: return newSearchParams.toString()
-  return Array.from(newSearchParams.entries())
-    .map(([key, value]) =>
-      value ? `${key}=${encodeURIComponent(value)}` : key,
-    )
-    .join("&")
-}
-
 export default function Main() {
-  const { data, paginate } = useLoaderData<typeof loader>();
-  const pages = Array.from({ length: paginate.total_page }).map((_, i) => ++i)
+  const { data = [], paginate = null } = useLoaderData<typeof loader>();
+  const totalPage = paginate?.total_page || 1;
+  const itemsPerPage = paginate?.items_per_page || 10;
 
   return (
     <div className="main-search">
       <div className="main-search__inner">
         <div className="main-search__forms">
-          <Form id="search-form" role="search">
+          <Form id="search-form" role="search" method="GET" action="/">
             <input
-              id="slug"
+              id="keyword"
               aria-label="Search films"
               placeholder="Search"
               type="search"
-              name="slug"
+              name="keyword"
             />
-          </Form>
-          <Form method="get">
             <button type="submit">Search</button>
           </Form>
         </div>
@@ -74,9 +60,11 @@ export default function Main() {
             </li>
           ))}
         </ul>
-        <nav className="main-search__paginate">
-          <PaginatedItems items={pages} />
-        </nav>
+        {totalPage > 1 && (
+          <nav className="main-search__paginate">
+            <PaginatedItems pageCount={totalPage} pageRangeDisplayed={itemsPerPage} />
+          </nav>
+        )}
       </div>
     </div>
   )

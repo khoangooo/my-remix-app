@@ -1,5 +1,4 @@
-import { Link, useSearchParams } from '@remix-run/react';
-import { useEffect, useState } from 'react';
+import { useSearchParams } from '@remix-run/react';
 import ReactPaginate from 'react-paginate';
 
 type PaginateClickEvent = {
@@ -13,10 +12,14 @@ type PaginateClickEvent = {
   isActive: boolean;
 }
 
-export default function PaginatedItems({ items }: { items: number[] }) {
+export default function PaginatedItems({
+  pageCount,
+  pageRangeDisplayed
+}: {
+  pageCount: number,
+  pageRangeDisplayed: number
+}) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const itemsPerPage = 10;
-  const pageCount = Math.ceil(items.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event: PaginateClickEvent) => {
@@ -31,10 +34,11 @@ export default function PaginatedItems({ items }: { items: number[] }) {
       breakLabel="..."
       nextLabel="next >"
       onPageChange={handlePageClick}
-      pageRangeDisplayed={10}
+      pageRangeDisplayed={pageRangeDisplayed}
       pageCount={pageCount}
       previousLabel="< previous"
       renderOnZeroPageCount={null}
+      activeClassName="active"
     />
   );
 }
