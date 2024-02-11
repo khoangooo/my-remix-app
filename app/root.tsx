@@ -7,10 +7,15 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-
 import type { LinksFunction } from "@remix-run/node"; // or cloudflare/deno
-
+import type { MetaFunction } from '@remix-run/node';
 import appStylesHref from "./app.css";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'New Remix App' }, 
+  ];
+};
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
@@ -26,7 +31,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />  
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

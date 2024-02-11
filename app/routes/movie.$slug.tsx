@@ -5,6 +5,7 @@ import {
 } from "@remix-run/react";
 import { getMovieDetail } from "~/api";
 import invariant from "tiny-invariant";
+import Image from "~/components/Image";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
@@ -21,13 +22,16 @@ export default function Movie() {
   const { data } = useLoaderData<typeof loader>();
 
   return (
-    <div>
-      <h1>{data?.name}</h1>
-      <p>{data?.description}</p>
+    <div className="main-movie">
+      <h1 style={{ textAlign: 'center'}}>{data?.name}</h1>
+      <div className="main-movie__poster-with-description">
+        <Image src={data?.poster_url} alt={data?.name} width={500}/>
+        <p>{data?.description}</p>
+      </div>
       {data?.episodes?.map((episode, i) => {
         return (
           <fieldset key={`episode-${++i}`}>
-            <legend>Season {i++}:</legend>
+            <legend style={{ marginLeft: 20 }}>Season {i++}:</legend>
             {episode.items.map((item) => {
               return (
                 <div key={item.slug}>
