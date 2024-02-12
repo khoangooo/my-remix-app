@@ -1,0 +1,26 @@
+.main-movie {
+  margin: 0 auto;
+  max-width: var(--page-width);
+  padding: 15px;
+
+  @include styleFor(tablet-and-up) {
+    padding: 50px;
+  }
+
+  &__poster-with-description {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @include styleFor(desktop-medium-and-up) {
+      flex-wrap: nowrap;
+    }
+
+    img {
+      @include styleFor(desktop-and-down) {
+        width: 100%;
+      }
+    }
+  }
+
+}

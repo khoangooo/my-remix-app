@@ -39,6 +39,7 @@ export default function PaginatedItems({
       previousLabel="< previous"
       renderOnZeroPageCount={null}
       activeClassName="active"
+      containerClassName='pagination'
     />
   );
 }

@@ -1,0 +1,26 @@
+$breakpoint-tablet: 750px !default;
+$breakpoint-desktop: 990px !default;
+$breakpoint-desktop-medium: 1200px !default;
+$breakpoint-desktop-large: 1440px !default;
+$breakpoint-phone-max: (
+    $breakpoint-tablet - 1) !default;
+$breakpoint-tablet-max: (
+    $breakpoint-desktop - 1) !default;
+$breakpoint-desktop-max: (
+    $breakpoint-desktop-medium - 1) !default;
+$breakpoint-desktop-medium-max: (
+    $breakpoint-desktop-large - 1) !default;
+
+/*================ FONTS ================*/
+$font-heading: "Arial";
+$font-body: "Arial";
+
+/*================ FONT WEIGHT ================*/
+/*================ FONT WEIGHT ================*/
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 700;
+
+/*================ COLORS ================*/
+$color-base: #2A2B2C;
+$color-text: #2A2B2C;
