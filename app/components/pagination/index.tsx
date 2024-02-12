@@ -1,5 +1,6 @@
 import { useSearchParams } from '@remix-run/react';
 import ReactPaginate from 'react-paginate';
+import "./styles.css";
 
 type PaginateClickEvent = {
   index: number | null;

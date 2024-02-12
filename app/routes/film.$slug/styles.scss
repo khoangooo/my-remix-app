@@ -1,9 +1,12 @@
+@use "../../styles/settings/_variables" as variables;
+@use "../../styles/settings/_mixins" as mixins;
+
 .main-movie {
   margin: 0 auto;
   max-width: var(--page-width);
   padding: 15px;
 
-  @include styleFor(tablet-and-up) {
+  @include mixins.styleFor(tablet-and-up) {
     padding: 50px;
   }
 
@@ -12,12 +15,12 @@
     flex-wrap: wrap;
     gap: 20px;
 
-    @include styleFor(desktop-medium-and-up) {
+    @include mixins.styleFor(desktop-medium-and-up) {
       flex-wrap: nowrap;
     }
 
     img {
-      @include styleFor(desktop-and-down) {
+      @include mixins.styleFor(desktop-and-down) {
         width: 100%;
       }
     }

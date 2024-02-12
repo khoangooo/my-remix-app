@@ -6,14 +6,15 @@
     "build:remix": "remix build",
     "build": "npm run build:sass && npm run build:remix",
     "dev:remix": "remix dev --manual",
-    "build:sass": "sass app/styles/app.scss:app/app.css --no-source-map --style=compressed",
-    "dev:sass": "sass app/styles/app.scss:app/app.css -w --no-source-map --verbose --style=compressed --update",
+    "build:sass": "sass app/styles/app.scss:app/styles/app.css app/routes/:app/routes/ app/components/:app/components/ --no-source-map --style=compressed",
+    "dev:sass": "sass app/styles/app.scss:app/styles/app.css app/routes/:app/routes/ app/components/:app/components/ -w --no-source-map --verbose --style=compressed --update",
     "dev": "concurrently \"npm run dev:sass\" \"npm run dev:remix\"",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve build",
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@remix-run/css-bundle": "^2.6.0",
     "@remix-run/node": "^2.6.0",
     "@remix-run/react": "^2.6.0",
     "@remix-run/serve": "^2.6.0",

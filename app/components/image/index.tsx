@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect, useRef, useState } from "react"
-import ImagePlaceholder from "../assets/images/no-image-placeholder.jpeg";
+import ImagePlaceholder from "../../assets/images/no-image-placeholder.jpeg";
 
 type ImageProps = {
   src?: string | undefined;

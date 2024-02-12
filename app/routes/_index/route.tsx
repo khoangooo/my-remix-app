@@ -1,12 +1,17 @@
 import { Form, Link, useNavigate } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import {
   useLoaderData
 } from "@remix-run/react";
 import { getFeatureMovies, searchMovies } from "~/api";
-import Image from "~/components/Image";
-import PaginatedItems from "~/components/Pagination";
+import Image from "~/components/image";
+import PaginatedItems from "~/components/pagination";
+import styles from "./styles.css";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
+];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const page = Number(new URL(request.url).searchParams.get('page')) || 1;

@@ -1,13 +1,1 @@
-/*================ SETTINGS ================*/
-@import "./settings/_variables";
-@import "./settings/_mixins";
-
-/*================ COMMONS ================*/
-@import "./commons/global";
-
-/*================ COMPONENTS ================*/
-@import "./components/pagination";
-
-/*================ PAGES ================*/
-@import "./pages/home-page";
-@import "./pages/detail-page";
+@use "./commons/global";

@@ -7,9 +7,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node"; // or cloudflare/deno
-import type { MetaFunction } from '@remix-run/node';
-import appStylesHref from "./app.css";
+import type { LinksFunction, MetaFunction } from "@remix-run/node"; // or cloudflare/deno
+import { cssBundleHref } from "@remix-run/css-bundle";
+import styles from "./styles/app.css";
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,7 +18,10 @@ export const meta: MetaFunction = () => {
 };
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: appStylesHref },
+  ...(cssBundleHref
+    ? [{ rel: "stylesheet", href: cssBundleHref }]
+    : []),
+  { rel: "stylesheet", href: styles },
 ];
 
 export default function App() {

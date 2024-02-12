@@ -1,11 +1,16 @@
 import { json } from "@remix-run/node";
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import {
   useLoaderData
 } from "@remix-run/react";
 import { getMovieDetail } from "~/api";
 import invariant from "tiny-invariant";
-import Image from "~/components/Image";
+import Image from "~/components/image";
+import styles from "./styles.css";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
+];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);

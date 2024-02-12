@@ -1,3 +1,6 @@
+@use "../settings/_variables" as variables;
+@use "../settings/_mixins" as mixins;
+
 *,
 *:before,
 *:after {
@@ -20,7 +23,7 @@ html {
 }
 
 body {
-  color: $color-base;
+  color: variables.$color-base;
   font-size: 1.6rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
