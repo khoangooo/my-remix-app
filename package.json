@@ -4,7 +4,7 @@
   "sideEffects": false,
   "scripts": {
     "build:remix": "remix build",
-    "build": "concurrently \"npm run build:sass\" \"npm run build:remix\"",
+    "build": "npm run build:sass && npm run build:remix",
     "dev:remix": "remix dev --manual",
     "build:sass": "sass app/styles/app.scss:app/app.css --no-source-map --style=compressed",
     "dev:sass": "sass app/styles/app.scss:app/app.css -w --no-source-map --verbose --style=compressed --update",
