@@ -13,7 +13,7 @@ import appStylesHref from "./app.css";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'New Remix App' }, 
+    { title: 'My Free Films App' }, 
   ];
 };
 

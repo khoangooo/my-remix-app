@@ -52,7 +52,7 @@ export default function Main() {
               <div className="main-search__text">
                 <h2 className="main-search__title">{item.name}</h2>
                 <div className="main-search__cta">
-                  <Link to={`/movie/${item.slug}`}>
+                  <Link to={`/film/${item.slug}`}>
                     Detail
                   </Link>
                 </div>

@@ -4,10 +4,12 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev --manual",
+    "dev:remix": "remix dev --manual",
+    "build:sass": "sass app/styles/app.scss:app/app.css --no-source-map --style=compressed",
+    "dev:sass": "sass app/styles/app.scss:app/app.css -w --no-source-map --verbose --style=compressed --update",
+    "dev": "concurrently \"npm run dev:sass\" \"npm run dev:remix\"",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve build",
-    "sass": "sass -w app/:app/ --no-source-map",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -29,6 +31,7 @@
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.13.0",
     "@typescript-eslint/parser": "^6.13.0",
+    "autoprefixer": "^10.4.17",
     "concurrently": "^8.2.2",
     "eslint": "^8.47.0",
     "eslint-import-resolver-typescript": "^3.6.1",

@@ -169,7 +169,7 @@ body {
   width: 180px;
   height: auto;
   position: relative;
-  border-top-left-radius : 5px;
+  border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   overflow: hidden;
 }
@@ -224,7 +224,7 @@ body {
   color: #fff
 }
 
-.main-search__paginate li.active{
+.main-search__paginate li.active {
   padding: 10px;
   border: 1px solid #e5e5e5;
   border-radius: 5px;
@@ -254,7 +254,7 @@ body {
 }
 
 @media screen and (min-width: 1200px) {
-  .main-movie__poster-with-description  {
+  .main-movie__poster-with-description {
     flex-wrap: nowrap;
   }
 }
